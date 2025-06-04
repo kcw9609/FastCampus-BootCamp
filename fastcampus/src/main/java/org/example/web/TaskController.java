@@ -17,6 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class TaskController {
     private final TaskService taskService;
+    /**
+     * 새로운 할 일 추가
+     * @param req 추가하고자 하는 할 일
+     * @return 추가된 할 일
+     * */
     @PostMapping
     public ResponseEntity<Task> createTask(@RequestBody TaskRequest req) {
         var result = taskService.add(req.getTitle(), req.getDescription(), req.getDueDate());
