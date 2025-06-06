@@ -11,6 +11,8 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -24,13 +26,40 @@ public class TaskService {
                 .description(description)
                 .dueDate(Date.valueOf(dueDate))
                 .status(TaskStatus.TODO)
-                .createdAt(Timestamp.valueOf(LocalDateTime.now()))
-                .updatedAt(Timestamp.valueOf(LocalDateTime.now()))
                 .build();
         var saved = this.taskRepository.save(e);
         return entityToObject(saved);
 
     }
+
+    public List<Task> getAll() {
+        return this.taskRepository.findAll().stream()
+                .map(this::entityToObject)
+                .collect(Collectors.toList());
+    }
+
+    public List<Task> getByDueDate(String dueDate) {
+        return this.taskRepository.findAllByDueDate(Date.valueOf(dueDate)).stream()
+                .map(this::entityToObject)
+                .collect(Collectors.toList());
+    }
+
+    public List<Task> getByStatus(TaskStatus status) {
+        return this.taskRepository.findAllByStatus(status).stream()
+                .map(this::entityToObject)
+                .collect(Collectors.toList());
+    }
+
+    public Task getOneById(Long id) {
+        var entity = this.getById(id);
+        return this.entityToObject(entity);
+    }
+
+    private TaskEntity getById(Long id) {
+        return this.taskRepository.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException(String.format("Task with id %s not found", id)));
+    }
+
     private Task entityToObject(TaskEntity e) {
         return Task.builder()
                 .id(e.getId())
