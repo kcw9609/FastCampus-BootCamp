@@ -10,9 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @Controller
+@RestController
 @RequestMapping("/tasks")
 @RequiredArgsConstructor
 public class TaskController {
@@ -22,7 +24,7 @@ public class TaskController {
      * @param req 추가하고자 하는 할 일
      * @return 추가된 할 일
      * */
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<Task> createTask(@RequestBody TaskRequest req) {
         var result = taskService.add(req.getTitle(), req.getDescription(), req.getDueDate());
 
