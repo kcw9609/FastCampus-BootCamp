@@ -26,6 +26,10 @@ dependencies {
 
     // swagger 설정
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
+
+    // UNIT TEST
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.mockito:mockito-junit-jupiter:3.12.4'
 }
 
 test {
