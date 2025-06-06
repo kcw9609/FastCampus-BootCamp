@@ -33,11 +33,9 @@ public class TaskEntity {
     private Date dueDate;
 
     @CreationTimestamp
-    @Column(insertable = false, updatable = false)
     private Timestamp createdAt;
 
     @CreationTimestamp
-    @Column(insertable = false, updatable = false)
     private Timestamp updatedAt;
 
 }
