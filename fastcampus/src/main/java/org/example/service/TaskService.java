@@ -8,7 +8,9 @@ import org.example.persist.entity.TaskEntity;
 import org.example.persist.entity.TaskStatus;
 import org.springframework.stereotype.Service;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Service
 @Slf4j
@@ -22,6 +24,8 @@ public class TaskService {
                 .description(description)
                 .dueDate(Date.valueOf(dueDate))
                 .status(TaskStatus.TODO)
+                .createdAt(Timestamp.valueOf(LocalDateTime.now()))
+                .updatedAt(Timestamp.valueOf(LocalDateTime.now()))
                 .build();
         var saved = this.taskRepository.save(e);
         return entityToObject(saved);
@@ -32,6 +36,7 @@ public class TaskService {
                 .id(e.getId())
                 .title(e.getTitle())
                 .description(e.getDescription())
+                .status(e.getStatus())
                 .dueDate(e.getDescription())
                 .createdAt(e.getCreatedAt().toLocalDateTime())
                 .updatedAt(e.getUpdatedAt().toLocalDateTime())

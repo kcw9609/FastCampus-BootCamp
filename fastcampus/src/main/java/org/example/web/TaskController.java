@@ -24,7 +24,7 @@ public class TaskController {
      * @param req 추가하고자 하는 할 일
      * @return 추가된 할 일
      * */
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<Task> createTask(@RequestBody TaskRequest req) {
         var result = taskService.add(req.getTitle(), req.getDescription(), req.getDueDate());
 
