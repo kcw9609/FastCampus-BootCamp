@@ -1,6 +1,7 @@
 package com.example.hello_springboot.model;
 
 import com.example.hello_springboot.annotation.PhoneNumber;
+import com.example.hello_springboot.annotation.YearMonth;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import jakarta.validation.constraints.*;
@@ -41,6 +42,9 @@ public class UserRegisterRequest {
 
     @FutureOrPresent
     private LocalDateTime registerAt;
+
+    @YearMonth
+    private String birthday;
 
     @AssertTrue(message = "name or nickName 은 존재해야 합니다.")
     public boolean nameCheck() {
