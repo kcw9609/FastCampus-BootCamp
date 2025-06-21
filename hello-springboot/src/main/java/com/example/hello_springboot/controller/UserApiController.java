@@ -1,6 +1,7 @@
 package com.example.hello_springboot.controller;
 
 import com.example.hello_springboot.model.UserRegisterRequest;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +14,7 @@ public class UserApiController {
 
     @PostMapping()
     public UserRegisterRequest register(
-            @RequestBody UserRegisterRequest userRegisterRequest
+            @Valid @RequestBody UserRegisterRequest userRegisterRequest
     ) {
         log.info("userRegisterRequest : {}", userRegisterRequest);
         return userRegisterRequest;
