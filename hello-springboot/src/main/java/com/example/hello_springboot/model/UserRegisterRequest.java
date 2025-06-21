@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Data
 @NoArgsConstructor
@@ -19,6 +20,8 @@ public class UserRegisterRequest {
 
     @NotBlank
     private String name;
+
+    private String nickname;
 
     @NotBlank
     @Size(min = 1 , max = 12)
@@ -36,5 +39,16 @@ public class UserRegisterRequest {
 
     @FutureOrPresent
     private LocalDateTime registerAt;
+
+    @AssertTrue(message = "name or nickName 은 존재해야 합니다.")
+    public boolean nameCheck() {
+        if(Objects.nonNull(name) & !name.isBlank()) {
+            return true;
+        }
+        if (Objects.nonNull(nickname) & !nickname.isBlank()) {
+            return true;
+        }
+        return false;
+    }
 
 }
