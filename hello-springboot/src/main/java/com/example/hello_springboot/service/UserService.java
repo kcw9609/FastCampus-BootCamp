@@ -22,4 +22,11 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public void delete(Long id) {
+        userRepository.delete(id);
+    }
+
+    public UserEntity findById(Long id) {
+        return userRepository.findById(id).orElse(null);
+    }
 }

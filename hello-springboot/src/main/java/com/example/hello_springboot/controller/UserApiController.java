@@ -47,4 +47,15 @@ public class UserApiController {
         return userService.findAll();
     }
 
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        userService.delete(id);
+
+    }
+
+    @GetMapping("/{id}")
+    public UserEntity findById(@PathVariable Long id) {
+        return userService.findById(id);
+    }
+
 }
