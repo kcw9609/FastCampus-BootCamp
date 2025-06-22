@@ -33,7 +33,7 @@ abstract public class SimpleDataRepository<T extends Entity, ID extends Long> im
 
         if(prevData.isPresent()) {
             // 기존 데이터 있는 경우 업데이트
-            dataList.remove(prevData);
+            dataList.remove(prevData.get());
             dataList.add(data);
 
         }else {
@@ -42,10 +42,6 @@ abstract public class SimpleDataRepository<T extends Entity, ID extends Long> im
             data.setId(index);
             dataList.add(data);
         }
-        // unique id
-        index++;
-        data.setId(index);
-        dataList.add(data);
 
         return data;
     }
@@ -74,7 +70,7 @@ abstract public class SimpleDataRepository<T extends Entity, ID extends Long> im
                 }).findFirst();
 
         if(deleteEntity.isPresent()) {
-            dataList.remove(deleteEntity);
+            dataList.remove(deleteEntity.get());
         }
     }
 
