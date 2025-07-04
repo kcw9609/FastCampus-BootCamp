@@ -1,16 +1,22 @@
 package com.example.hello_springboot.model;
 
-import com.example.hello_springboot.entity.Entity;
+import jakarta.persistence.*;
 import lombok.*;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserEntity extends Entity {
+@Table(name = "users")
+public class UserEntity  {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String name;
 
-    private int score;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id")
+    private ClubEntity club;
 
 }
