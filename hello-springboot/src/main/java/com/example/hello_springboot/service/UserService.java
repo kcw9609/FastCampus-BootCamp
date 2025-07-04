@@ -1,8 +1,7 @@
 package com.example.hello_springboot.service;
 
-import com.example.hello_springboot.db.UserRepository;
+import com.example.hello_springboot.db.ClubUserRepository;
 import com.example.hello_springboot.model.UserEntity;
-import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +10,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class UserService {
-    private final UserRepository userRepository;
+    private final ClubUserRepository userRepository;
+
     public UserEntity save(UserEntity user) {
         // save
         return userRepository.save(user);
@@ -23,7 +23,7 @@ public class UserService {
     }
 
     public void delete(Long id) {
-        userRepository.delete(id);
+        userRepository.deleteById(id);
     }
 
     public UserEntity findById(Long id) {
